@@ -4,6 +4,15 @@
     width: 100%;
 }
 
+.slider-section-container .pager-input span {
+    font-weight: bold;
+}
+
+.slider-section-container .pager-input input {
+    width: 40px;
+    text-align: center;
+}
+
 .slider-content {
     margin: 0 auto;
     overflow: hidden;
@@ -14,7 +23,8 @@
     float: left;
     margin: 0;
     padding: 0;
-    width: 2000px;
+    width: 10000px;
+    height: 342px;
 }
 .slider-content ul li {
     position: relative;

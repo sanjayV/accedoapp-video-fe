@@ -37,11 +37,13 @@ function imageCarouselDir() {
         scope.flag = (scope.config.flag) ? scope.config.flag : true;
         scope.moveImage = (scope.config.moveImage) ? scope.config.moveImage : 1;
 
-        scope.setCarouselWidth();
-        scope.getSlideCount();
-        scope.setDefaultPosition();
-        scope.addEvent();
-        scope.resizeEvent();
+        setTimeout(function() {
+            scope.setCarouselWidth();
+            scope.getSlideCount();
+            scope.setDefaultPosition();
+            scope.addEvent();
+            scope.resizeEvent();
+        },500)
 
         if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent))
             scope.mobileSlide();
@@ -52,7 +54,7 @@ function imageCarouselDir() {
         var modalW = parseInt(angular.element('body').width(), 10) - 15;
 
         $scope.setCarouselWidth = function() {
-            $scope.contentWidth = parseInt($($scope.baseClass).find('ul.carousel-ul li.carousel-li').outerWidth(true));
+            $scope.contentWidth = parseInt(angular.element($scope.baseClass).find('ul.carousel-ul li.carousel-li').outerWidth(true));
             $scope.totalContent = $($scope.baseClass).find('ul.carousel-ul li.carousel-li').length;
             $scope.carouselUlWidth = $scope.contentWidth * $scope.totalContent;
             $($scope.baseClass).find('ul.carousel-ul').width($scope.carouselUlWidth);
@@ -240,6 +242,6 @@ function imageCarouselDir() {
 
         angular.element('#videoModal').on('hidden.bs.modal', function() {
             angular.element('.videoContainer').html('');
-        })
+        });
     }
 }
