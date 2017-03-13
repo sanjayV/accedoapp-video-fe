@@ -1,0 +1,41 @@
+<section class="slider-section-container infinite-carousel">
+    <div class="slider-content">
+        <ul class="carousel-ul">
+            <li class="carousel-li" ng-repeat="d in data track by $index" ng-click="openVideoPlayer(d)">
+                <img ng-src="{{ d.imgUrl }}" />
+                <i class="fa fa-play-circle-o play-icon" aria-hidden="true"></i>
+                <span>{{ d.title }}</span>
+            </li>
+        </ul>
+    </div>
+    <!-- <div class="slider-controls">
+        <a href="javascript:;" class="next">Next</a>
+        <a href="javascript:;" class="prev">Prev</a>
+    </div> -->
+    <div class="text-center">
+        <ul class="pagination">
+            <li><a href="javascript:;" class="prev">&laquo;</a></li>
+            <li ng-repeat="number in data track by $index" class="active"><a href="#"> {{$index}} </a></li>
+            <li><a href="javascript:;" class="next">&raquo;</a></li>
+        </ul>
+    </div>
+</section>
+
+<!-- Video player model -->
+<div id="videoModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">{{ vtitle }}</h4>
+            </div>
+            <div class="modal-body" ng-style="modalStyle">
+                <div class="videoContainer"></div>
+            </div>
+            <div class="modal-footer text-justify">
+                {{vdesc}}
+            </div>
+        </div>
+    </div>
+</div>
