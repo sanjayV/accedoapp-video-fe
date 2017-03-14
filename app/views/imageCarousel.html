@@ -15,7 +15,7 @@
     <div class="text-center">
         <ul class="pager">
             <li><a href="javascript:;" class="prev" ng-click="prevClick()">&laquo; Previous</a></li>
-            <li class="pager-input"><label>Current Active</label> <input type="text" value="{{ activeImageIndex + 1 }}" /> <label>of {{ data.length }}</label></li>
+            <li class="pager-input"><label>Current Active</label> <input type="text" disabled="true" value="{{ activeImageIndex + 1 }}" /> <label>of {{ data.length }}</label></li>
             <!-- <li ng-repeat="number in data track by $index" class="active"><a href="#"> {{$index}} </a></li> -->
             <li><a href="javascript:;" class="next" ng-click="nextClick()">Next &raquo;</a></li>
         </ul>

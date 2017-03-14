@@ -28,6 +28,7 @@ angular.module('accedoApp')
                     }
                 })
             } else {
+                $scope.showHistory = 'no record';
                 console.log('WS error for save history for video');
             }
         });
