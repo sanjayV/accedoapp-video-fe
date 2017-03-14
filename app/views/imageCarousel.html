@@ -2,7 +2,7 @@
     <div class="slider-content">
         <ul class="carousel-ul">
             <li class="carousel-li" ng-repeat="d in data track by $index" ng-click="openVideoPlayer(d)">
-                <img ng-src="{{ d.imgUrl }}" />
+                <img ng-src="{{ d.imgUrl }}" ng-class="{'active' : $index == activeImageIndex}" />
                 <i class="fa fa-play-circle-o play-icon" aria-hidden="true"></i>
                 <span>{{ d.title }}</span>
             </li>
@@ -14,10 +14,10 @@
     </div> -->
     <div class="text-center">
         <ul class="pager">
-            <li><a href="javascript:;" class="prev">&laquo; Previous</a></li>
-            <li class="pager-input"><label>Showing</label> <input type="text" value="{{ $index + 1 }}" /> <label>of {{ data.length }}</label></li>
+            <li><a href="javascript:;" class="prev" ng-click="prevClick()">&laquo; Previous</a></li>
+            <li class="pager-input"><label>Current Active</label> <input type="text" value="{{ activeImageIndex + 1 }}" /> <label>of {{ data.length }}</label></li>
             <!-- <li ng-repeat="number in data track by $index" class="active"><a href="#"> {{$index}} </a></li> -->
-            <li><a href="javascript:;" class="next">Next &raquo;</a></li>
+            <li><a href="javascript:;" class="next" ng-click="nextClick()">Next &raquo;</a></li>
         </ul>
     </div>
 </section>

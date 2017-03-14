@@ -50,6 +50,7 @@ function imageCarouselDir() {
     }
 
     function imageCarouselCtrl($scope, $sce, $compile, $window, httpRequest, ACCEDO_CONFIG, $cookies) {
+        $scope.activeImageIndex = 0;
         var modalH = parseInt(angular.element('body').height(), 10) - 15;
         var modalW = parseInt(angular.element('body').width(), 10) - 15;
 
@@ -62,7 +63,6 @@ function imageCarouselDir() {
 
         $scope.getSlideCount = function() {
             var windowWidth = $(window).width(); //retrieve current window width
-            console.log('windowWidth', $('body').width())
 
             if (typeof $scope.moveImage != 'undefined' && $scope.moveImage > 0) {
                 $scope.slideCount = $scope.moveImage;
@@ -87,29 +87,59 @@ function imageCarouselDir() {
                 $($scope.baseClass).find('ul.carousel-ul li.carousel-li:first').before(movedSlide);
             }
 
-            $($scope.baseClass).find('ul.carousel-ul').css('margin-left', $scope.slidePosTemp);
+            angular.element($scope.baseClass).find('ul.carousel-ul').css('margin-left', $scope.slidePosTemp);
+        };
+
+        //next link click
+        $scope.nextClick = function() {
+            if ($scope.flag) {
+                $scope.flag = false;
+                $scope.slideCarousel('next');
+
+                if ($scope.activeImageIndex < $scope.data.length - 1) {
+                    $scope.activeImageIndex++;
+                } else {
+                    $scope.activeImageIndex = 0;
+                }
+            }
+        };
+
+        //prev link click
+        $scope.prevClick = function() {
+            if ($scope.flag) {
+                $scope.flag = false;
+                $scope.slideCarousel('prev');
+
+                if ($scope.activeImageIndex > 0) {
+                    $scope.activeImageIndex--;
+                } else {
+                    $scope.activeImageIndex = $scope.data.length - 1;
+                }
+            }
         };
 
         $scope.addEvent = function() {
-            //next link click
-            $($scope.baseClass + ' .next').unbind('click').click(function(e) {
-                e.preventDefault();
-
-                if ($scope.flag) {
-                    $scope.flag = false;
-                    $scope.slideCarousel('next');
+            //key press event
+            document.onkeydown = function(e) {
+                //right arrow key press
+                if(e.keyCode == 39) {
+                    angular.element('.next').trigger('click');
                 }
-            });
 
-            //prev link click
-            $($scope.baseClass + ' .prev').unbind('click').click(function(e) {
-                e.preventDefault();
-
-                if ($scope.flag) {
-                    $scope.flag = false;
-                    $scope.slideCarousel('prev')
+                //left arrow key press
+                if(e.keyCode == 37) {
+                    angular.element('.prev').trigger('click');
                 }
-            });
+
+                //enter arrow key press
+                if(e.keyCode == 13) {
+                    angular.element('img.active').parent('li').trigger('click');
+                }
+            };
+        };
+
+        $scope.getActive = function() {
+            //
         };
 
         $scope.slideCarousel = function(direction) {
